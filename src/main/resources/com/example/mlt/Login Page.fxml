@@ -52,7 +52,7 @@
                      </font></Button>
                   <Button layoutX="180.0" layoutY="297.0" mnemonicParsing="false" style="-fx-background-color: E9CCFF;" text="Forgot password?" textFill="#1343e1" />
                   <Button layoutX="303.0" layoutY="13.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="26.0" text="X" />
-                  <Text fx:id="PromptLoginLabel" fill="#ff4646" layoutX="57.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please enter email address and password." />
+                  <Text fx:id="PromptLoginLabel" fill="#ff4646" layoutX="57.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please enter email address and password" />
                </children>
             </AnchorPane>
          </children>
