@@ -25,22 +25,22 @@
          <children>
             <AnchorPane layoutX="43.0" layoutY="34.0" prefHeight="432.0" prefWidth="336.0" style="-fx-background-color: E9CCFF;">
                <children>
-                  <Text layoutX="93.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign in" textAlignment="CENTER" wrappingWidth="162.79052734375">
+                  <Text layoutX="93.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign In" textAlignment="CENTER" wrappingWidth="162.79052734375">
                      <font>
                         <Font name="Bell MT" size="40.0" />
                      </font>
                   </Text>
-                  <PasswordField fx:id="PasswordLoginText" layoutX="53.0" layoutY="163.0" prefHeight="35.0" prefWidth="230.0" promptText="Enter password">
+                  <PasswordField fx:id="PasswordLoginText" layoutX="53.0" layoutY="163.0" prefHeight="35.0" prefWidth="230.0" promptText="Password">
                      <font>
                         <Font name="Bell MT" size="18.0" />
                      </font>
                   </PasswordField>
-                  <TextField fx:id="EmailLoginText" layoutX="53.0" layoutY="103.0" prefHeight="35.0" prefWidth="230.0" promptText="Enter email">
+                  <TextField fx:id="EmailLoginText" layoutX="53.0" layoutY="103.0" prefHeight="35.0" prefWidth="230.0" promptText="Email Address">
                      <font>
                         <Font name="Bell MT" size="18.0" />
                      </font>
                   </TextField>
-                  <Button layoutX="53.0" layoutY="249.0" mnemonicParsing="false" onAction="#SignInButton" prefHeight="40.0" prefWidth="230.0" text="Sign in">
+                  <Button layoutX="53.0" layoutY="249.0" mnemonicParsing="false" onAction="#SignInButton" prefHeight="40.0" prefWidth="230.0" text="Sign In">
                      <font>
                         <Font name="Bell MT" size="18.0" />
                      </font>
@@ -52,7 +52,7 @@
                      </font></Button>
                   <Button layoutX="180.0" layoutY="297.0" mnemonicParsing="false" style="-fx-background-color: E9CCFF;" text="Forgot password?" textFill="#1343e1" />
                   <Button layoutX="303.0" layoutY="13.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="26.0" text="X" />
-                  <Text fx:id="PromptLoginLabel" fill="#ff4646" layoutX="57.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please enter email address and password." />
+                  <Text fx:id="PromptLoginLabel" fill="#ff4646" layoutX="57.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please enter email address and password" />
                </children>
             </AnchorPane>
          </children>
