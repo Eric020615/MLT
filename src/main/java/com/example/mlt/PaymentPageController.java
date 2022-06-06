@@ -2,12 +2,14 @@ package com.example.mlt;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import java.io.IOException;
+
 
 public class PaymentPageController {
 
@@ -27,8 +29,19 @@ public class PaymentPageController {
     private Button ProfileIcon;
 
     @FXML
-    void topUpButtonPressed(ActionEvent event) {
+    void topUpButtonPressed(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Top Up Page.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Top up");
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.show();
+    }
 
+    @FXML
+    public void initialize() {
+        //accountBalanceLabel.setText(String.format("%.2f", User.getBalance()));
     }
 
     @FXML
