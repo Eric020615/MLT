@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="900.0">
+         <image>
+            <Image url="@../../../image/Login Background.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="63.0" layoutY="59.0" prefHeight="496.0" prefWidth="386.0" style="-fx-background-color: FFFFFF;">
+         <children>
+            <ImageView fitHeight="364.0" fitWidth="330.0" layoutX="35.0" layoutY="66.0">
+               <image>
+                  <Image url="@../../../image/Login Logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="413.0" layoutY="59.0" prefHeight="496.0" prefWidth="416.0" style="-fx-background-color: FFFFFF;">
+         <children>
+            <AnchorPane layoutX="43.0" layoutY="34.0" prefHeight="432.0" prefWidth="336.0" style="-fx-background-color: E9CCFF;">
+               <children>
+                  <Text layoutX="93.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign in" textAlignment="CENTER" wrappingWidth="162.79052734375">
+                     <font>
+                        <Font name="Bell MT" size="40.0" />
+                     </font>
+                  </Text>
+                  <PasswordField layoutX="53.0" layoutY="163.0" prefHeight="35.0" prefWidth="230.0" promptText="Enter password">
+                     <font>
+                        <Font name="Bell MT" size="18.0" />
+                     </font>
+                  </PasswordField>
+                  <TextField layoutX="53.0" layoutY="103.0" prefHeight="35.0" prefWidth="230.0" promptText="Enter email">
+                     <font>
+                        <Font name="Bell MT" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Button layoutX="53.0" layoutY="249.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="230.0" text="Sign in">
+                     <font>
+                        <Font name="Bell MT" size="18.0" />
+                     </font>
+                  </Button>
+                  <Text layoutX="109.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create a new account." textAlignment="CENTER" />
+                  <Button layoutX="136.0" layoutY="394.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" text="Sign Up">
+                     <font>
+                        <Font name="Bell MT" size="12.0" />
+                     </font></Button>
+                  <Button layoutX="180.0" layoutY="297.0" mnemonicParsing="false" style="-fx-background-color: E9CCFF;" text="Forgot password?" textFill="#1343e1" />
+                  <Button layoutX="303.0" layoutY="13.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="26.0" text="X" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
