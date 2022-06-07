@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: F4E5FF;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: F4E5FF;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mlt.HomePageController">
    <children>
       <ImageView fitHeight="135.0" fitWidth="941.0" layoutX="-41.0" AnchorPane.leftAnchor="-41.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -33,9 +33,9 @@
       <ButtonBar layoutY="140.0" prefHeight="40.0" prefWidth="900.0" />
       <AnchorPane layoutY="134.0" prefHeight="40.0" prefWidth="900.0" style="-fx-background-color: FFFFFF;">
          <children>
-            <Button layoutX="707.0" layoutY="7.0" mnemonicParsing="false" style="-fx-background-color: FFFFFF;" text="Payment" AnchorPane.topAnchor="7.0" />
-            <Button layoutX="443.0" layoutY="9.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="95.0" style="-fx-background-color: FFFFFF;" text="Navigation" AnchorPane.topAnchor="7.0" />
-            <Button layoutX="200.0" layoutY="7.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="95.0" style="-fx-background-color: FFFFFFF;" text="Histogram" AnchorPane.topAnchor="7.0" />
+            <Button layoutX="707.0" layoutY="7.0" mnemonicParsing="false" onAction="#PaymentButton" style="-fx-background-color: FFFFFF;" text="Payment" AnchorPane.topAnchor="7.0" />
+            <Button layoutX="443.0" layoutY="9.0" mnemonicParsing="false" onAction="#NavigationButton" prefHeight="26.0" prefWidth="95.0" style="-fx-background-color: FFFFFF;" text="Navigation" AnchorPane.topAnchor="7.0" />
+            <Button layoutX="200.0" layoutY="7.0" mnemonicParsing="false" onAction="#HistogramButton" prefHeight="26.0" prefWidth="95.0" style="-fx-background-color: FFFFFFF;" text="Histogram" AnchorPane.topAnchor="7.0" />
             <Button layoutX="28.0" layoutY="9.0" mnemonicParsing="false" prefHeight="5.0" prefWidth="14.0" style="-fx-background-color: FFFFFF;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="5.0">
                <graphic>
                   <ImageView fitHeight="26.0" fitWidth="35.0">
@@ -45,7 +45,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="64.0" layoutY="10.0" mnemonicParsing="false" prefHeight="5.0" prefWidth="14.0" style="-fx-background-color: FFFFFF;" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="5.0">
+            <Button layoutX="64.0" layoutY="10.0" mnemonicParsing="false" onAction="#ProfileButton" prefHeight="5.0" prefWidth="14.0" style="-fx-background-color: FFFFFF;" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="5.0">
                <graphic>
                   <ImageView fitHeight="26.0" fitWidth="35.0">
                      <image>
