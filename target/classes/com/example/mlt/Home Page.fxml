@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: F4E5FF;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mlt.HomePageController">
+   <children>
+      <ImageView fitHeight="135.0" fitWidth="941.0" layoutX="-41.0" AnchorPane.leftAnchor="-41.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../../../image/BackgroundNew1.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="93.0" fitWidth="355.0" layoutX="530.0" layoutY="61.0">
+         <image>
+            <Image url="@../../../image/train.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="165.0" fitWidth="226.0" layoutX="22.0" layoutY="-15.0">
+         <image>
+            <Image url="@../../../image/logo.png" />
+         </image>
+      </ImageView>
+      <Text fill="#232323" layoutX="356.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LET THE TRAIN BE A MEOW " wrappingWidth="432.0843811035156">
+         <font>
+            <Font name="Bauhaus 93" size="36.0" />
+         </font>
+      </Text>
+      <ButtonBar layoutY="140.0" prefHeight="40.0" prefWidth="900.0" />
+      <AnchorPane layoutY="134.0" prefHeight="40.0" prefWidth="900.0" style="-fx-background-color: FFFFFF;">
+         <children>
+            <Button layoutX="707.0" layoutY="7.0" mnemonicParsing="false" onAction="#PaymentButton" style="-fx-background-color: FFFFFF;" text="Payment" AnchorPane.topAnchor="7.0" />
+            <Button layoutX="443.0" layoutY="9.0" mnemonicParsing="false" onAction="#NavigationButton" prefHeight="26.0" prefWidth="95.0" style="-fx-background-color: FFFFFF;" text="Navigation" AnchorPane.topAnchor="7.0" />
+            <Button layoutX="200.0" layoutY="7.0" mnemonicParsing="false" onAction="#HistogramButton" prefHeight="26.0" prefWidth="95.0" style="-fx-background-color: FFFFFFF;" text="Histogram" AnchorPane.topAnchor="7.0" />
+            <Button layoutX="28.0" layoutY="9.0" mnemonicParsing="false" prefHeight="5.0" prefWidth="14.0" style="-fx-background-color: FFFFFF;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="5.0">
+               <graphic>
+                  <ImageView fitHeight="26.0" fitWidth="35.0">
+                     <image>
+                        <Image url="@../../../image/Home icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="64.0" layoutY="10.0" mnemonicParsing="false" onAction="#ProfileButton" prefHeight="5.0" prefWidth="14.0" style="-fx-background-color: FFFFFF;" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="5.0">
+               <graphic>
+                  <ImageView fitHeight="26.0" fitWidth="35.0">
+                     <image>
+                        <Image url="@../../../image/user icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text layoutX="213.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text=": Meow~Meow~">
+         <font>
+            <Font size="14.0" />
+         </font></Text>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="User Profile" />
+      <ImageView fitHeight="427.0" fitWidth="571.0" layoutX="329.0" layoutY="175.0">
+         <image>
+            <Image url="@../../../image/Home Page Background.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutY="175.0" prefHeight="427.0" prefWidth="330.0" style="-fx-background-color: AEB0E2;">
+         <children>
+            <Text fill="WHITE" layoutX="34.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MAKE YOUR TRIP FASTER AND MORE COMFORTABLE" wrappingWidth="262.8000488281249">
+               <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="28.0" />
+               </font>
+            </Text>
+            <Text layoutX="34.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meow Rapid Transit (MRT) is a type of rail transportation that travels much faster than traditional rail traffic by utilising an integrated system of specialised rolling stock and dedicated track." wrappingWidth="252.39996337890614">
+               <font>
+                  <Font name="Bell MT" size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="34.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="On the go and need some assistance? Contact us : " wrappingWidth="269.1999511718749">
+               <font>
+                  <Font name="Bookman Old Style" size="14.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="34.0" layoutY="332.0">
+               <image>
+                  <Image url="@../../../image/Call Icon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="34.0" fitWidth="29.0" layoutX="34.0" layoutY="368.0">
+               <image>
+                  <Image url="@../../../image/Email Icon.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="70.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="03-88886789">
+               <font>
+                  <Font name="Bookman Old Style" size="13.0" />
+               </font>
+            </Text>
+            <Text layoutX="70.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MeowMeow@gmail.com">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
