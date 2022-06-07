@@ -33,8 +33,8 @@
       <AnchorPane layoutY="134.0" prefHeight="40.0" prefWidth="900.0" style="-fx-background-color: FFFFFF;">
          <children>
             <Button layoutX="707.0" layoutY="7.0" mnemonicParsing="false" style="-fx-background-color: FFFFFF;" text="Payment" AnchorPane.topAnchor="7.0" />
-            <Button layoutX="443.0" layoutY="9.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="95.0" style="-fx-background-color: FFFFFF;" text="Navigation" AnchorPane.topAnchor="7.0" />
-            <Button layoutX="200.0" layoutY="7.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="95.0" style="-fx-background-color: FFFFFFF;" text="Histogram" AnchorPane.topAnchor="7.0" />
+            <Button layoutX="443.0" layoutY="9.0" mnemonicParsing="false" onAction="#NavigationButton" prefHeight="26.0" prefWidth="95.0" style="-fx-background-color: FFFFFF;" text="Navigation" AnchorPane.topAnchor="7.0" />
+            <Button layoutX="200.0" layoutY="7.0" mnemonicParsing="false" onAction="#HistogramButton" prefHeight="26.0" prefWidth="95.0" style="-fx-background-color: FFFFFFF;" text="Histogram" AnchorPane.topAnchor="7.0" />
             <Button fx:id="HomeIcon" layoutX="28.0" layoutY="9.0" mnemonicParsing="false" onAction="#HomeButton" prefHeight="5.0" prefWidth="14.0" style="-fx-background-color: FFFFFF;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="5.0">
                <graphic>
                   <ImageView fitHeight="26.0" fitWidth="35.0" onDragDetected="#HomeButton">

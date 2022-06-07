@@ -41,11 +41,7 @@ public class LoginPageController {
             if (true){
                 // if valid,
                 // Forward user to the homepage the credentials matches
-                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home-page.fxml")));
-                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
+
             }
         } else {
             PromptLoginLabel.setVisible(true);
@@ -54,10 +50,7 @@ public class LoginPageController {
 
     @FXML
     void SignUpButton(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Register Page.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
+        new CommonTask().switchScene(event,"Sign Up Page.fxml","MEOW RAPID TRANSIT");
     }
 
     /*

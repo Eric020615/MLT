@@ -6,7 +6,6 @@ import com.example.mlt.Graph.Location;
 import com.example.mlt.Graph.UnweightedGraph;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -23,33 +22,41 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
 
+public class NavigationController {
 
-
-public class NavigationController implements Initializable {
     UnweightedGraph<Location> graph;
+
     HashMap<String, Integer> place;
+
     @FXML
     AnchorPane map;
+
     @FXML
     Text price;
+
     @FXML
     Text totalStation;
-    @FXML
-    Pane paneMap;
+
     @FXML
     TextField source;
+
     @FXML
     TextField destination;
+
     @FXML
     Text information;
+
     @FXML
     Pane shortestpathMap;
+
     @FXML
     Button findpath;
+
     @FXML
     public void Map(ActionEvent event) {
 
@@ -153,11 +160,6 @@ public class NavigationController implements Initializable {
 
     }
 
-
-
-
-
-
     public void findShortestPath(ActionEvent event) {
         //
         // paneMap.getChildren().clear();
@@ -221,13 +223,30 @@ public class NavigationController implements Initializable {
         information.setText("The shortest path from "+s+" to "+d );
 
     }
-
-
+/*
     public void initialize(URL location, ResourceBundle resources) {
         Map(new ActionEvent());
+    }*/
+
+    @FXML
+    void HomeButton(ActionEvent event) throws IOException {
+        new CommonTask().switchScene(event,"Home Page.fxml","MEOW RAPID TRANSIT");
+    }
+
+    @FXML
+    void HistogramButton(ActionEvent event) {
+
     }
 
 
+    @FXML
+    void PaymentPageButton(ActionEvent event) throws IOException {
+        new CommonTask().switchScene(event,"Payment Page.fxml","MEOW RAPID TRANSIT");
+    }
 
+    @FXML
+    void UserProfileButton(ActionEvent event) throws IOException {
+        new CommonTask().switchScene(event,"User Profile.fxml","MEOW RAPID TRANSIT");
+    }
 
 }

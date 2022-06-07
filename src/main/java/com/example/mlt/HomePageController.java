@@ -1,24 +1,10 @@
 package com.example.mlt;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.util.Objects;
 
 public class HomePageController {
-
-    private Stage stage;
-
-    private Scene scene;
-
-    private Parent root;
 
     @FXML
     void HistogramButton(ActionEvent event) {
@@ -26,24 +12,18 @@ public class HomePageController {
     }
 
     @FXML
-    void NavigationButton(ActionEvent event) {
-
+    void NavigationButton(ActionEvent event) throws IOException {
+        new CommonTask().switchScene(event,"Navigation Page.fxml","MEOW RAPID TRANSIT");
     }
 
     @FXML
     void PaymentButton(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Payment Page.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
+        new CommonTask().switchScene(event,"Payment Page.fxml","MEOW RAPID TRANSIT");
     }
 
     @FXML
     void ProfileButton(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("User Profile.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
+        new CommonTask().switchScene(event,"User Profile.fxml","MEOW RAPID TRANSIT");
     }
 
 }

@@ -1,7 +1,5 @@
 package com.example.mlt;
 
-
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
