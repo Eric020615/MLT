@@ -3,24 +3,29 @@ package com.example.mlt;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class LoginPageController {
+public class LoginPageController implements Initializable {
 
-    private Stage stage;
 
-    private Scene scene;
-
-    private Parent root;
+    private static String loginEmail;
 
     @FXML
     private PasswordField PasswordLoginText;
@@ -31,21 +36,46 @@ public class LoginPageController {
     @FXML
     private Text PromptLoginLabel;
 
+    public static String getLoginEmail(){
+        return loginEmail;
+    }
+
+    public static void setLoginEmail(String newEmail){
+        loginEmail=newEmail;
+    }
+
     @FXML
     void SignInButton(ActionEvent event) throws IOException {
-        PromptLoginLabel.setVisible(false);
-        if (!PasswordLoginText.getText().isBlank() && !EmailLoginText.getText().isBlank()) {
-            //  if email and password entered is not empty,
-            // Check the credentials entered by the user
-            //if(validateLogin()) {
-            if (true){
-                // if valid,
-                // Forward user to the homepage the credentials matches
 
+        Connection connection = database.getConnections();
+        String userEmail =  EmailLoginText.getText();
+        String userPassword =PasswordLoginText.getText();
+        try {
+
+            if (userEmail.isEmpty() == true || userPassword.isEmpty() == true) {
+                PromptLoginLabel.setVisible(true);
+            } else if(!EmailLoginText.getText().matches("^[_A-Za-z0-9-+]+(.[_A-Za-z0-9-]+)*@+[A-Za-z0-9-]+([.][A-Za-z0-9]+)")) {
+                CommonTask.showAlert(Alert.AlertType.WARNING, "Error", "Invalid Email ! Make sure your Email format is correct.");
+            }else{
+                String sql = "SELECT * FROM user WHERE email = ? AND password = ?";
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setString(1, userEmail);
+                preparedStatement.setString(2, userPassword);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if (resultSet.next()) {
+                    CommonTask.showAlert(Alert.AlertType.INFORMATION, "Login Success!", "Successfully Logged In!");
+                    setLoginEmail(userEmail);
+                    new CommonTask().switchScene(event,"Home Page.fxml","MEOW RAPID TRANSIT");
+                } else {
+                    CommonTask.showAlert(Alert.AlertType.ERROR, "Login Failed!", "Incorrect Email or Password!");
+                }
             }
-        } else {
-            PromptLoginLabel.setVisible(true);
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            database.closeConnections();
         }
+
     }
 
     @FXML
@@ -53,91 +83,22 @@ public class LoginPageController {
         new CommonTask().switchScene(event,"Sign Up Page.fxml","MEOW RAPID TRANSIT");
     }
 
-    /*
-    public boolean validateLogin() {
+    @FXML
+    void ForgotPasswordButton(ActionEvent event) throws IOException {
 
-        Connection connectDB = null;
-        Statement statement = null;
-        ResultSet queryResult = null;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ForgotPassword Page.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Change Password");
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.show();
 
-        try {
-            DatabaseConnection connectNow = new DatabaseConnection();
-            connectDB = connectNow.getConnection();
-            statement = connectDB.createStatement();
-            String email = emailEntered_Login.getText();
-            String password = passwordEntered_Login.getText();
-            queryResult = statement.executeQuery("SELECT * FROM user_account WHERE email = '" + email + "' AND password ='" + password + "'");
-            // if the query result is not empty
-            if (queryResult.next()) {
-                String retrievedEmail = queryResult.getString("email");
-                String retrievedPassword = queryResult.getString("password");
-                if (retrievedEmail.equals(email) && retrievedPassword.equals(password)) {
-                    // if the credentials matches
-                    //store current user's info in the User class
-                    User.setUsername(queryResult.getString("username"));
-                    User.setEmail(retrievedEmail);
-                    User.setPassword(retrievedPassword);
-                    User.setAddress(queryResult.getString("address"));
-                    User.setPaymentPassword(queryResult.getString("paymentPassword"));
-                    if (queryResult.getString("balance") == null) {
-                        User.setBalance(0);
-                    } else {
-                        User.setBalance(Double.parseDouble(queryResult.getString("balance")));
-                    }
-                    return true;
-
-                } else {
-                    // if the credentials does not match
-                    // display error pop-up message
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setTitle("Error");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Invalid credentials. Please re-enter a valid credentials.");
-                    alert.showAndWait();
-                    return false;
-                }
-            } else {
-                // if the query result is empty
-                // display error pop-up message
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Error");
-                alert.setHeaderText(null);
-                alert.setContentText("Invalid credentials. Please re-enter a valid credentials.");
-                alert.showAndWait();
-                return false;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-
-        } finally {
-            if (queryResult != null) {
-                try {
-                    queryResult.close();
-
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (statement != null) {
-                try {
-                    statement.close();
-
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (connectDB != null) {
-                try {
-                    connectDB.close();
-
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return false;
     }
-     */
 
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        PromptLoginLabel.setVisible(false);
+    }
 }
+

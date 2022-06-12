@@ -6,8 +6,11 @@ import com.example.mlt.Graph.Location;
 import com.example.mlt.Graph.UnweightedGraph;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -27,7 +30,7 @@ import java.net.URL;
 import java.util.*;
 
 
-public class NavigationController {
+public class NavigationController implements Initializable {
 
     UnweightedGraph<Location> graph;
 
@@ -37,10 +40,10 @@ public class NavigationController {
     AnchorPane map;
 
     @FXML
-    Text price;
+    Label price;
 
     @FXML
-    Text totalStation;
+    Label totalStation;
 
     @FXML
     TextField source;
@@ -49,7 +52,7 @@ public class NavigationController {
     TextField destination;
 
     @FXML
-    Text information;
+    Label information;
 
     @FXML
     Pane shortestpathMap;
@@ -60,6 +63,87 @@ public class NavigationController {
     @FXML
     public void Map(ActionEvent event) {
 
+            Scene scene = new Scene(new GraphView(graph), 1300, 700);
+            Stage mapStage = new Stage();
+            mapStage.setTitle("DisplayMRTMap"); // Set the stage title
+            mapStage.setScene(scene); // Place the scene in the stage
+            mapStage.show();
+
+
+    }
+
+    public void findShortestPath(ActionEvent event) {
+
+        shortestpathMap.getChildren().clear();
+        String s = source.getText();
+        String d = destination.getText();
+        System.out.println(s + " " + d);
+
+        LinkedList<Integer> shortpath = null;
+        try {
+            shortpath = graph.printShortestDistance(place.get(s), place.get(d), graph.getSize());
+        } catch (NullPointerException e) {
+
+            System.out.println("Sorry, the source or destination are not exists. ");
+        }
+
+        List<? extends Displayable> vertices = graph.getVertices();
+        try {
+            Integer[] n = new Integer[shortpath.size()];
+            int j = shortpath.size() - 1;
+            for (int num : shortpath) {
+                n[j] = num;
+                j--;
+            }
+            int incx = 5;
+
+            for (int i = 0; i < n.length; i++) {
+
+                int x = vertices.get(n[i]).getX();
+                int y = vertices.get(n[i]).getY();
+                Location l = new Location();
+                l = (Location) vertices.get(n[i]);
+                String name = l.getName();
+                shortestpathMap.getChildren().add(new Circle(105 + incx, 80, 15, Paint.valueOf("blue")));
+                Text t = new Text(105 + incx - 15, 80 + 30, name);
+                t.setFont(Font.font("Times New Romen",15));
+                shortestpathMap.getChildren().add(t);
+
+                if (i < n.length - 1) {
+                    int x2 = graph.getVertex(n[i + 1]).getX();
+                    int y2 = graph.getVertex(n[i + 1]).getY();
+                    Line line = new Line(x, y, x2, y2);
+                    line.setStroke(Color.RED);
+                    Line line2 = new Line(120 + incx, 80, 105 + incx + 100, 80);
+                    line2.setStroke(Color.GREEN);
+
+
+                    shortestpathMap.getChildren().add(line2);
+                }
+
+                incx += 100;
+            }
+
+            double Price = shortpath.size() - 1 * 0.80;
+            System.out.println("\nRM " + price);
+            price.setText("The Estimated Price : RM " + Price);
+
+            int station = shortpath.size() - 1;
+            totalStation.setText("Total Station To Travel : " + station);
+            information.setText("The shortest path from " + s + " to " + d);
+
+            price.setVisible(true);
+            information.setVisible(true);
+            totalStation.setVisible(true);
+            shortestpathMap.setVisible(true);
+
+        } catch (NullPointerException e) {
+            CommonTask.showAlert(Alert.AlertType.ERROR, "Failed to find", "Sorry, the source or destination are not exists.");
+        }
+
+    }
+
+    public void initialize(URL location, ResourceBundle resources) {
         place = new HashMap<String, Integer>();
         Scanner input = new Scanner(System.in);
 
@@ -120,114 +204,20 @@ public class NavigationController {
                     graph.getVertex(i).setX(positionX);
                     graph.getVertex(i).setY(positionY);
 
-                    positionY += 58;
+                    positionY += 60
+                    ;
                 }
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-
-
-
-        /*
-        List<? extends Displayable> vertices = graph.getVertices();
-        for (int i = 0; i < graph.getSize(); i++) {
-
-            int x = vertices.get(i).getX();
-            int y = vertices.get(i).getY();
-            Location l = new Location();
-            l = (Location) vertices.get(i);
-            String name = l.getName();
-            //System.out.println(showShortestPath.get(i));
-
-            paneMap.getChildren().add(new Circle(x, y, 4)); // Display a vertex
-            Text t = new Text(x -15, y-6 ,name);
-            t.setFont(Font.font(10));
-            paneMap.getChildren().add(t);
-
-
-
-
         }
-        */
-        }
-            Scene scene = new Scene(new GraphView(graph), 1300, 700);
-            Stage mapStage = new Stage();
-            mapStage.setTitle("DisplayMRTMap"); // Set the stage title
-            mapStage.setScene(scene); // Place the scene in the stage
-            mapStage.show();
 
-
+        price.setVisible(false);
+        information.setVisible(false);
+        totalStation.setVisible(false);
+        shortestpathMap.setVisible(false);
     }
-
-    public void findShortestPath(ActionEvent event) {
-        //
-        // paneMap.getChildren().clear();
-        shortestpathMap.getChildren().clear();
-        String s = source.getText();
-        String d = destination.getText();
-        System.out.println(s + " " + d);
-
-        LinkedList<Integer> shortpath = null;
-        try {
-            shortpath = graph.printShortestDistance(place.get(s), place.get(d), graph.getSize());
-        } catch (NullPointerException e) {
-            //information.setText("Sorry, the source or destination are not exists.");
-            System.out.println("Sorry, the source or destination are not exists. ");
-        }
-
-        List<? extends Displayable> vertices = graph.getVertices();
-        Integer [] n=new Integer[shortpath.size()];
-        int j=shortpath.size()-1;
-        for (int num : shortpath) {
-            n[j]=num;
-            j--;
-        }
-        int incx=5;
-
-        for(int i=0;i<n.length;i++){
-
-            int x = vertices.get(n[i]).getX();
-            int y = vertices.get(n[i]).getY();
-            Location l = new Location();
-            l = (Location) vertices.get(n[i]);
-            String name = l.getName();
-            //paneMap.getChildren().add(new Circle(x, y, 5, Paint.valueOf("red"))); // Display a vertex
-            shortestpathMap.getChildren().add(new Circle(105+incx, 80, 15, Paint.valueOf("blue")));
-            Text t = new Text(x -15, y-6 ,name);
-            t.setFont(Font.font(10));
-            //paneMap.getChildren().add(t);
-            shortestpathMap.getChildren().add(new Text(105+incx-15,80+25,name));
-
-            if(i<n.length-1) {
-                int x2 = graph.getVertex(n[i + 1]).getX();
-                int y2 = graph.getVertex(n[i + 1]).getY();
-                Line line = new Line(x, y, x2, y2);
-                line.setStroke(Color.RED);
-                Line line2 = new Line(120+incx, 80, 105+incx+100, 80);
-                line2.setStroke(Color.GREEN);
-
-                //paneMap.getChildren().add(line);
-                shortestpathMap.getChildren().add(line2);
-            }
-
-            incx+=100;
-        }
-
-        double Price=shortpath.size()-1 * 0.80;
-        System.out.println("\nRM "+price);
-        price.setText("The Estimated Price : RM "+Price);
-
-        int station=shortpath.size()-1;
-        totalStation.setText("Total Station To Travel : "+station);
-        information.setText("The shortest path from "+s+" to "+d );
-
-    }
-/*
-    public void initialize(URL location, ResourceBundle resources) {
-        Map(new ActionEvent());
-    }*/
-
     @FXML
     void HomeButton(ActionEvent event) throws IOException {
         new CommonTask().switchScene(event,"Home Page.fxml","MEOW RAPID TRANSIT");
