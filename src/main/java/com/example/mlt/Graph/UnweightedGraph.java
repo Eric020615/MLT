@@ -7,69 +7,15 @@ public class UnweightedGraph<V> {
   protected List<List<Edge>> neighbors = new ArrayList<>(); // Adjacency lists
   protected ArrayList<ArrayList<Integer>> adjList;
 
-  /**
-   * Construct an empty graph
-   */
+
   public UnweightedGraph() {
   }
 
-  /**
-   * Construct a graph from vertices and edges stored in arrays
-   */
-  public UnweightedGraph(V[] vertices, int[][] edges) {
-    for (int i = 0; i < vertices.length; i++)
-      addVertex(vertices[i]);
 
-    createAdjacencyLists(edges, vertices.length);
-  }
-
-  /**
-   * Construct a graph from vertices and edges stored in List
-   */
-  public UnweightedGraph(List<V> vertices, List<Edge> edges) {
-    for (int i = 0; i < vertices.size(); i++)
-      addVertex(vertices.get(i));
-
-    createAdjacencyLists(edges, vertices.size());
-  }
-
-  /**
-   * Construct a graph for integer vertices 0, 1, 2 and edge list
-   */
-  public UnweightedGraph(List<Edge> edges, int numberOfVertices) {
-    for (int i = 0; i < numberOfVertices; i++)
-      addVertex((V) (new Integer(i))); // vertices is {0, 1, ...}
-
-    createAdjacencyLists(edges, numberOfVertices);
-  }
-
-  /**
-   * Construct a graph from integer vertices 0, 1, and edge array
-   */
-  public UnweightedGraph(int[][] edges, int numberOfVertices) {
-    for (int i = 0; i < numberOfVertices; i++)
-      addVertex((V) (new Integer(i))); // vertices is {0, 1, ...}
-
-    createAdjacencyLists(edges, numberOfVertices);
-  }
-
-  /**
-   * Create adjacency lists for each vertex
-   */
   private void createAdjacencyLists(
           int[][] edges, int numberOfVertices) {
     for (int i = 0; i < edges.length; i++) {
       addEdge(edges[i][0], edges[i][1]);
-    }
-  }
-
-  /**
-   * Create adjacency lists for each vertex
-   */
-  private void createAdjacencyLists(
-          List<Edge> edges, int numberOfVertices) {
-    for (Edge edge : edges) {
-      addEdge(edge.u, edge.v);
     }
   }
 
@@ -127,12 +73,6 @@ public class UnweightedGraph<V> {
   }
 
 
-  /** Return the degree for a specified vertex */
-  public int getDegree(int v) {
-    return neighbors.get(v).size();
-  }
-
-
   /** Print the edges */
   public void printEdges() {
     for (int u = 0; u < neighbors.size(); u++) {
@@ -152,27 +92,12 @@ public class UnweightedGraph<V> {
     neighbors.clear();
   }
 
-  //@Override
-  /** Add a vertex to the graph */
-  /*
-  public boolean addVertex(V vertex) {
-      if (!vertices.contains(vertex)) {
-        vertices.add(vertex);
-        neighbors.add(new ArrayList<Edge>());
-        return true;
-      } else {
-        return false;
-      }
-    }
-    */
 
   public boolean addVertex(V vertex) {
     boolean add = true;
     for (int i = 0; i < getSize(); i++) {
       Location l = (Location) vertices.get(i);
       if (l.getName().equals(((Location) vertex).getName())) {
-        // System.out.println("l :"+l.getName());
-        //System.out.println("vertex :"+((Location) vertex).getName());
         add = false;
       }
     }
@@ -180,12 +105,8 @@ public class UnweightedGraph<V> {
       vertices.add(vertex);
       neighbors.add(new ArrayList<Edge>());
     }
-
     return add;
   }
-
-
-
 
 
   /** Add an edge to the graph */
@@ -210,27 +131,6 @@ public class UnweightedGraph<V> {
   }
 
 
-  /** Obtain a DFS tree starting from vertex u */
-  /** To be discussed in Section 28.7 */
-  public SearchTree dfs(int v) {
-    List<Integer> searchOrder = new ArrayList<>();
-    int[] parent = new int[vertices.size()];
-    for (int i = 0; i < parent.length; i++)
-      parent[i] = -1; // Initialize parent[i] to -1
-
-    // Mark visited vertices
-    boolean[] isVisited = new boolean[vertices.size()];
-
-    // Recursively search
-    dfs(v, parent, searchOrder, isVisited);
-
-    // Return a search tree
-    return new SearchTree(v, parent, searchOrder);
-  }
-
-  /**
-   * Recursive method for DFS search
-   */
   private void dfs(int v, int[] parent, List<Integer> searchOrder,
                    boolean[] isVisited) {
     // Store the visited vertex
@@ -245,39 +145,8 @@ public class UnweightedGraph<V> {
     }
   }
 
-  /** Starting bfs search from vertex v */
-  /** To be discussed in Section 28.9 */
-  public SearchTree bfs(int v) {
-    List<Integer> searchOrder = new ArrayList<>();
-    int[] parent = new int[vertices.size()];
-    for (int i = 0; i < parent.length; i++)
-      parent[i] = -1; // Initialize parent[i] to -1
-
-    java.util.LinkedList<Integer> queue =
-            new java.util.LinkedList<>(); // list used as a queue
-    boolean[] isVisited = new boolean[vertices.size()];
-    queue.offer(v); // Enqueue v
-    isVisited[v] = true; // Mark it visited
-
-    while (!queue.isEmpty()) {
-      int u = queue.poll(); // Dequeue to u
-      searchOrder.add(u); // u searched
-      for (Edge e : neighbors.get(u)) { // Note that e.u is u
-        if (!isVisited[e.v]) { // e.v is w in Listing 28.11
-          queue.offer(e.v); // Enqueue w
-          parent[e.v] = u; // The parent of w is u
-          isVisited[e.v] = true; // Mark w visited
-        }
-      }
-    }
-
-    return new SearchTree(v, parent, searchOrder);
-  }
 
   /** Tree inner class inside the AbstractGraph class */
-  /**
-   * To be discussed in Section 28.6
-   */
   public class SearchTree {
     private int root; // The root of the tree
     private int[] parent; // Store the parent of each vertex
@@ -286,44 +155,12 @@ public class UnweightedGraph<V> {
     /**
      * Construct a tree with root, parent, and searchOrder
      */
-    public SearchTree(int root, int[] parent,
-                      List<Integer> searchOrder) {
+    public SearchTree(int root, int[] parent,List<Integer> searchOrder) {
       this.root = root;
       this.parent = parent;
       this.searchOrder = searchOrder;
     }
 
-    /**
-     * Return the root of the tree
-     */
-    public int getRoot() {
-      return root;
-    }
-
-    /**
-     * Return the parent of vertex v
-     */
-    public int getParent(int v) {
-      return parent[v];
-    }
-
-    /**
-     * Return an array representing search order
-     */
-    public List<Integer> getSearchOrder() {
-      return searchOrder;
-    }
-
-    /**
-     * Return number of vertices found
-     */
-    public int getNumberOfVerticesFound() {
-      return searchOrder.size();
-    }
-
-    /**
-     * Return the path of vertices from a vertex to the root
-     */
     public List<V> getPath(int index) {
       ArrayList<V> path = new ArrayList<>();
 
@@ -336,21 +173,7 @@ public class UnweightedGraph<V> {
       return path;
     }
 
-    /**
-     * Print a path from the root to vertex v
-     */
-    public void printPath(int index) {
-      List<V> path = getPath(index);
-      System.out.print("A path from " + vertices.get(root) + " to " +
-              vertices.get(index) + ": ");
-      for (int i = path.size() - 1; i >= 0; i--) {
-        if (i == 0) {
-          System.out.print(path.get(i));
-        } else {
-          System.out.print(path.get(i) + " -> ");
-        }
-      }
-    }
+
 
     /**
      * Print the whole tree
@@ -368,22 +191,7 @@ public class UnweightedGraph<V> {
       System.out.println();
     }
   }
-  /*
-    public void printShortestPaths() {
-      this.adjList = new ArrayList<ArrayList<Integer>>(getSize());
 
-      for (int i = 0; i < getSize(); i++) {
-        adjList.add(new ArrayList<Integer>());
-      }
-      for (int i = 0; i < getSize(); i++) {
-            for (Edge e : neighbors.get(i)) {
-              adjList.get(i).add(e.v);
-            }
-
-      }
-      System.out.println(adjList);
-    }
-  */
   public LinkedList<Integer> printShortestDistance(int s, int dest, int v) {
     this.adjList = new ArrayList<ArrayList<Integer>>(getSize());
 
@@ -415,18 +223,6 @@ public class UnweightedGraph<V> {
     while (pred[crawl] != -1) {
       path.add(pred[crawl]);
       crawl = pred[crawl];
-    }
-
-    // Print distance
-    System.out.println("Shortest path length is: " + dist[dest]);
-
-    // Print path
-    System.out.print("Path is : ");
-    for (int i = path.size() - 1; i >= 0; i--) {
-      if(i==0)
-        System.out.print(getVertex(path.get(i)));
-      else
-        System.out.print(getVertex(path.get(i))+" -> ");
     }
 
     return path   ;
@@ -485,13 +281,13 @@ public class UnweightedGraph<V> {
 
 
   /** Remove vertex v and return true if successful */
-  public boolean remove(V v) {
+  public boolean removeVertex(V v) {
     return true; // Implementation left as an exercise
   }
 
 
   /** Remove edge (u, v) and return true if successful */
-  public boolean remove(int u, int v) {
+  public boolean removeEdge(int u, int v) {
     return true; // Implementation left as an exercise
   }
 

@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: F4E5FF;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mlt.NavigationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: F4E5FF;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mlt.NavigationController">
    <children>
       <ImageView fitHeight="135.0" fitWidth="941.0" layoutX="-41.0" AnchorPane.leftAnchor="-41.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -56,6 +63,7 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Line endX="531.7999877929688" endY="40.79998779296875" startX="449.4000244140625" startY="40.79998779296875" stroke="#8e006b" />
          </children>
       </AnchorPane>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
@@ -89,37 +97,37 @@
                   <Image url="@../../../image/background.png" />
                </image>
             </ImageView>
-            <Pane fx:id="shortestpathMap" layoutX="29.0" layoutY="52.0" prefHeight="142.0" prefWidth="858.0" />
-            <Text fx:id="totalStation" layoutX="458.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="388.5181884765625">
+            <Pane fx:id="shortestpathMap" layoutX="29.0" layoutY="52.0" prefHeight="142.0" prefWidth="832.0" />
+            <Button layoutX="809.0" layoutY="9.0" mnemonicParsing="false" onAction="#Map" style="-fx-background-color: #c68feb;" text="Show Map" textFill="WHITE" />
+            <Label fx:id="price" layoutX="75.0" layoutY="239.0" prefHeight="42.0" prefWidth="285.0" style="-fx-background-color: #ddc5ed;" textFill="#050af5">
                <font>
-                  <Font size="23.0" />
+                  <Font name="Times New Roman" size="23.0" />
                </font>
-            </Text>
-            <Text fx:id="price" layoutX="30.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="294.40002746582024">
+            </Label>
+            <Label fx:id="totalStation" layoutX="458.0" layoutY="239.0" prefHeight="42.0" prefWidth="257.0" style="-fx-background-color: #ddc5ed;" textFill="#050af5">
                <font>
-                  <Font size="23.0" />
+                  <Font name="Times New Roman" size="23.0" />
                </font>
-            </Text>
-            <Button layoutX="809.0" layoutY="9.0" mnemonicParsing="false" onAction="#Map" text="Show Map" />
-            <Text fx:id="information" layoutX="30.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-blend-mode: black;" wrappingWidth="608.5367584228516">
+            </Label>
+            <Label fx:id="information" layoutX="75.0" layoutY="205.0" prefHeight="27.0" prefWidth="784.0" style="-fx-background-color: #ddc5ed;" textFill="#050af5">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Times New Roman" size="23.0" />
                </font>
-            </Text>
+            </Label>
          </children></Pane>
       <TextField fx:id="source" layoutX="165.0" layoutY="532.0" />
       <TextField fx:id="destination" layoutX="455.0" layoutY="532.0" prefHeight="26.0" prefWidth="168.0" />
       <Text layoutX="14.0" layoutY="551.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your current station :">
          <font>
-            <Font name="Arial" size="16.0" />
+            <Font name="Times New Roman" size="16.0" />
          </font>
       </Text>
       <Text layoutX="322.0" layoutY="551.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your destination :">
          <font>
-            <Font name="Arial" size="16.0" />
+            <Font name="Times New Roman" size="16.0" />
          </font>
       </Text>
-      <Button layoutX="639.0" layoutY="532.0" mnemonicParsing="false" onAction="#findShortestPath" prefHeight="26.0" prefWidth="150.0" text="Find Path" />
+      <Button layoutX="639.0" layoutY="532.0" mnemonicParsing="false" onAction="#findShortestPath" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #c68feb;" text="Find Path" textFill="WHITE" />
       <ImageView fitHeight="80.0" fitWidth="84.0" layoutX="806.0" layoutY="499.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../image/map.png" />

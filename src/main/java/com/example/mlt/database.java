@@ -11,17 +11,11 @@ public class database {
 
     public static Connection getConnections(){
         try {
-            //Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-            connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/fopgui?useSSL=false","root","ABC123");
+            connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/fopgui?allowPublicKeyRetrieval=true&useSSL=false","root","ABc021231%ABc021231%");
             System.out.println("Database Connected");
-
-       // } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
-      //      e.printStackTrace();
         } catch(Exception e){
             e.printStackTrace();
         }
-
-
         return connection;
     }
 
