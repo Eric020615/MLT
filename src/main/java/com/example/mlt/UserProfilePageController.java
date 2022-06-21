@@ -50,8 +50,6 @@ public class UserProfilePageController {
             alert.show();
             //When user click OK
             if (alert.getResult() == ButtonType.OK) {
-
-
                 try {
                     //Create connection to the database
                     Connection connection = database.getConnections();
