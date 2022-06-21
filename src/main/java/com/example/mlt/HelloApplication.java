@@ -9,15 +9,21 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Login Page.fxml"));  //Open the Login Page
+        //Create an instance of FXMLLoader for switching to the Log In Page
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Login Page.fxml"));  
+        //Create an instance of Scene
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("MEOW RAPID TRANSIT"); //our application header
+        //our application header
+        stage.setTitle("MEOW RAPID TRANSIT"); 
+        //Set the scene
         stage.setScene(scene);
-        stage.setResizable(false); //non resizable/auto-adjust size page
-        stage.show();//show the page
+        //non resizable/auto-adjust size page
+        stage.setResizable(false); 
+        //show the stage for the page
+        stage.show();
     }
-
+    //main method to launch it
     public static void main(String[] args) {
-        launch(); //main method to launch it
+        launch();
     }
 }
