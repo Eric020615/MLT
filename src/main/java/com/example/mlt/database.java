@@ -11,7 +11,7 @@ public class database {
 
     public static Connection getConnections(){
         try {
-            connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/fopgui?allowPublicKeyRetrieval=true&useSSL=false","root","ABc021231%ABc021231%");
+            connection=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/fopgui?allowPublicKeyRetrieval=true&autoReconnect=true&useUnicode=true&useSSL=false","root","ABc021231%ABc021231%");
             System.out.println("Database Connected");
         } catch(Exception e){
             e.printStackTrace();

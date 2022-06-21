@@ -96,7 +96,8 @@ public class PaymentPageController implements Initializable {
     }
 
     @FXML
-    void HistogramButton(ActionEvent event) throws IOException{
+    void HistogramButton(ActionEvent event) throws IOException {
+        new CommonTask().switchScene(event,"Histogram Page.fxml","MEOW RAPID TRANSIT");
     }
 
     @FXML
