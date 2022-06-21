@@ -7,8 +7,8 @@ import java.io.IOException;
 public class HomePageController {
 
     @FXML
-    void HistogramButton(ActionEvent event) {
-
+    void HistogramButton(ActionEvent event) throws IOException {
+        new CommonTask().switchScene(event,"Histogram Page.fxml","MEOW RAPID TRANSIT");
     }
 
     @FXML

@@ -224,10 +224,9 @@ public class NavigationController implements Initializable {
     }
 
     @FXML
-    void HistogramButton(ActionEvent event) {
-
+    void HistogramButton(ActionEvent event) throws IOException {
+        new CommonTask().switchScene(event,"Histogram Page.fxml","MEOW RAPID TRANSIT");
     }
-
 
     @FXML
     void PaymentPageButton(ActionEvent event) throws IOException {
