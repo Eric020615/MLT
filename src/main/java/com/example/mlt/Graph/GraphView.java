@@ -1,5 +1,5 @@
 package com.example.mlt.Graph;
-
+//import all the libraries needed
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -23,14 +23,15 @@ public class GraphView extends Pane {
                 BackgroundPosition.CENTER,
                 new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, true, true, true, true));
         setBackground(new Background(back));
+        //A loop process to plot the station one by one on the graph
         for (int i = 0; i < graph.getSize(); i++) {
-
+            //get position x and y of the station
             int x = vertices.get(i).getX();
             int y = vertices.get(i).getY();
             Location l ;
             l = (Location) vertices.get(i);
             String name = l.getName();
-
+            //use the represented location image to plot the station
             ImageView pin = new ImageView(lct);
             pin.setX(x);
             pin.setY(y);
@@ -38,7 +39,7 @@ public class GraphView extends Pane {
             pin.setFitHeight(20);
             getChildren().add(pin);
 
-
+            //set the station name beside the plotting station on the graph
             Text t= new Text(x-20 , y -4, name);
             t.setFont(Font.font("Times New Romen",12));
             t.setFill(Color.BLUE);

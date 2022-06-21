@@ -1,10 +1,13 @@
 package com.example.mlt.Graph;
-
+//import all the libraries needed
 import java.util.*;
 
 public class UnweightedGraph<V> {
-  protected List<V> vertices = new ArrayList<>(); // Store vertices
-  protected List<List<Edge>> neighbors = new ArrayList<>(); // Adjacency lists
+  // Create a list to store vertices
+  protected List<V> vertices = new ArrayList<>();
+  //Create a list to store neighbors of each vertex
+  protected List<List<Edge>> neighbors = new ArrayList<>();
+  // Adjacency lists
   protected ArrayList<ArrayList<Integer>> adjList;
 
 
@@ -20,13 +23,13 @@ public class UnweightedGraph<V> {
   }
 
 
-  /** Return the number of vertices in the graph */
+  // Return the number of vertices in the graph
   public int getSize() {
     return vertices.size();
   }
 
 
-  /** Return the vertices in the graph */
+  // Return the vertices in the graph
   public List<V> getVertices() {
     List<V> name = new ArrayList<>();
     for (int i = 0; i < vertices.size(); i++) {
@@ -39,19 +42,19 @@ public class UnweightedGraph<V> {
     return vertices;
   }
 
-  /** Return the object for the specified vertex */
+  // Return the object for the specified vertex
   public V getVertex(int index) {
     return vertices.get(index);
   }
 
 
-  /** Return the index for the specified vertex object */
+  // Return the index for the specified vertex object
   public int getIndex(V v) {
     return vertices.indexOf(v);
   }
 
 
-  /** Return the neighbors of the specified vertex */
+  // Return the neighbors of the specified vertex
   public List<Integer> getNeighbors(int index) {
     List<Integer> result = new ArrayList<>();
     List<String> neighbour = new ArrayList<>();
@@ -60,6 +63,7 @@ public class UnweightedGraph<V> {
     return result;
   }
 
+  //Show the neighbours of the vertices
   public String showNeighbours(int index){
     List<Integer> result = new ArrayList<>();
     List<String> neighbour = new ArrayList<>();
@@ -73,7 +77,7 @@ public class UnweightedGraph<V> {
   }
 
 
-  /** Print the edges */
+  // Print the edges
   public void printEdges() {
     for (int u = 0; u < neighbors.size(); u++) {
       System.out.print(getVertex(u) + " (" + u + "): ");
@@ -86,13 +90,13 @@ public class UnweightedGraph<V> {
   }
 
 
-  /** Clear the graph */
+  //Clear the graph
   public void clear() {
     vertices.clear();
     neighbors.clear();
   }
 
-
+  //Add the vertex
   public boolean addVertex(V vertex) {
     boolean add = true;
     for (int i = 0; i < getSize(); i++) {
@@ -109,7 +113,7 @@ public class UnweightedGraph<V> {
   }
 
 
-  /** Add an edge to the graph */
+  //Add an edge to the graph
   public boolean addEdge(Edge e) {
     if (e.u < 0 || e.u > getSize() - 1)
       throw new IllegalArgumentException("No such index: " + e.u);
@@ -125,73 +129,12 @@ public class UnweightedGraph<V> {
     }
   }
 
-  /** Add an edge to the graph */
+  // Add an edge to the graph
   public boolean addEdge(int u, int v) {
     return addEdge(new Edge(u, v)) && addEdge(new Edge(v, u));
   }
 
-
-  private void dfs(int v, int[] parent, List<Integer> searchOrder,
-                   boolean[] isVisited) {
-    // Store the visited vertex
-    searchOrder.add(v);
-    isVisited[v] = true; // Vertex v visited
-
-    for (Edge e : neighbors.get(v)) { // Note that e.u is v
-      if (!isVisited[e.v]) { // e.v is w in Listing 28.8
-        parent[e.v] = v; // The parent of w is v
-        dfs(e.v, parent, searchOrder, isVisited); // Recursive search
-      }
-    }
-  }
-
-
-  /** Tree inner class inside the AbstractGraph class */
-  public class SearchTree {
-    private int root; // The root of the tree
-    private int[] parent; // Store the parent of each vertex
-    private List<Integer> searchOrder; // Store the search order
-
-    /**
-     * Construct a tree with root, parent, and searchOrder
-     */
-    public SearchTree(int root, int[] parent,List<Integer> searchOrder) {
-      this.root = root;
-      this.parent = parent;
-      this.searchOrder = searchOrder;
-    }
-
-    public List<V> getPath(int index) {
-      ArrayList<V> path = new ArrayList<>();
-
-      do {
-        path.add(vertices.get(index));
-        index = parent[index];
-      }
-      while (index != -1);
-
-      return path;
-    }
-
-
-
-    /**
-     * Print the whole tree
-     */
-    public void printTree() {
-      System.out.println("Root is: " + vertices.get(root));
-      System.out.print("Edges: ");
-      for (int i = 0; i < parent.length; i++) {
-        if (parent[i] != -1) {
-          // Display an edge
-          System.out.print("(" + vertices.get(parent[i]) + ", " +
-                  vertices.get(i) + ") ");
-        }
-      }
-      System.out.println();
-    }
-  }
-
+  //Print the shortest path / distance
   public LinkedList<Integer> printShortestDistance(int s, int dest, int v) {
     this.adjList = new ArrayList<ArrayList<Integer>>(getSize());
 
@@ -279,17 +222,6 @@ public class UnweightedGraph<V> {
     return false;
   }
 
-
-  /** Remove vertex v and return true if successful */
-  public boolean removeVertex(V v) {
-    return true; // Implementation left as an exercise
-  }
-
-
-  /** Remove edge (u, v) and return true if successful */
-  public boolean removeEdge(int u, int v) {
-    return true; // Implementation left as an exercise
-  }
 
 }
 

@@ -54,7 +54,7 @@
                <graphic>
                   <ImageView fitHeight="26.0" fitWidth="35.0">
                      <image>
-                        <Image url="@../../../image/User icon.png" />
+                        <Image url="@../../../image/user icon.png" />
                      </image>
                   </ImageView>
                </graphic>

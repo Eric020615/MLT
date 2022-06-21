@@ -1,5 +1,5 @@
 package com.example.mlt;
-
+//import all the libraries needed
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,33 +35,37 @@ public class LoginPageController implements Initializable {
 
     @FXML
     private Text PromptLoginLabel;
-
+    //Method to get login email
     public static String getLoginEmail(){
         return loginEmail;
     }
-
+    //Method to set login email
     public static void setLoginEmail(String newEmail){
         loginEmail=newEmail;
     }
 
     @FXML
+    //A method to sign in (login function)
     void SignInButton(ActionEvent event) throws IOException {
-
+        //Get connection to mysql and get information of user email and password  from user
         Connection connection = database.getConnections();
         String userEmail =  EmailLoginText.getText();
         String userPassword =PasswordLoginText.getText();
         try {
-
+            //Check the email and password field whether they are empty , prompt error label if they are empty
             if (userEmail.isEmpty() == true || userPassword.isEmpty() == true) {
                 PromptLoginLabel.setVisible(true);
+            //Check the format email correct or not
             } else if(!EmailLoginText.getText().matches("^[_A-Za-z0-9-+]+(.[_A-Za-z0-9-]+)*@+[A-Za-z0-9-]+([.][A-Za-z0-9]+)")) {
                 CommonTask.showAlert(Alert.AlertType.WARNING, "Error", "Invalid Email ! Make sure your Email format is correct.");
             }else{
+                //Get user information from mysql database to check the validation of user information
                 String sql = "SELECT * FROM user WHERE email = ? AND password = ?";
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setString(1, userEmail);
                 preparedStatement.setString(2, userPassword);
                 ResultSet resultSet = preparedStatement.executeQuery();
+                //Check the result. If result has the message means the infor is valid to login, otherwise it is empty means the user infor get wrong
                 if (resultSet.next()) {
                     CommonTask.showAlert(Alert.AlertType.INFORMATION, "Login Success!", "Successfully Logged In!");
                     setLoginEmail(userEmail);
@@ -78,11 +82,12 @@ public class LoginPageController implements Initializable {
 
     }
 
+    //Action on button to switch to Sign Up Page
     @FXML
     void SignUpButton(ActionEvent event) throws IOException {
         new CommonTask().switchScene(event,"Sign Up Page.fxml","MEOW RAPID TRANSIT");
     }
-
+    //Pop out the window of forgot password page
     @FXML
     void ForgotPasswordButton(ActionEvent event) throws IOException {
 
@@ -95,7 +100,7 @@ public class LoginPageController implements Initializable {
         stage.show();
 
     }
-
+    //Set the error information is invisible at the beginning
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         PromptLoginLabel.setVisible(false);
